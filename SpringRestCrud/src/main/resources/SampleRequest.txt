@@ -1,3 +1,6 @@
+post : http://localhost:8090/SpringRestCrud/ConsumerGroup/create
+
+payload
 {
     "consumerid": 47,
     "brand": "acc",
@@ -12,3 +15,8 @@
     "createDt": null,
     "createid": 4
 }
+
+GET http://localhost:8090/SpringRestCrud/ConsumerGroup/9
+
+GET http://localhost:8090/SpringRestCrud/ConsumerGroup/list
+
