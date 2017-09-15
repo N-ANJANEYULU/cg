@@ -5,9 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.sql.ordering.antlr.Factory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import com.beingjavaguys.model.ConsumerGroup;
 
@@ -25,16 +23,34 @@ public class DataDaoimpl implements DataDao {
 	
 	Transaction tx = null;
 
-	public boolean addEntity(ConsumerGroup consumergroup) throws Exception {
+	public Integer addEntity(ConsumerGroup consumergroup) throws Exception {
 		// System.out.println(consumergroup.getBrand());
 		System.out.println(consumergroup.getFirstName());
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
+		Integer id = (Integer)session.save(consumergroup);
+		System.out.println("Object Created with Id "+ id);
+		tx.commit();
+		session.close();
+
+		return id;
+	}
+	
+	
+	public boolean updateEntity(ConsumerGroup consumergroup) throws Exception {
+		// System.out.println(consumergroup.getBrand());
 		
-		session.save(consumergroup);
+		if(consumergroup.getConsumergroupid()!=null){
+		System.out.println(consumergroup.getFirstName());
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+		
+		session.update(consumergroup);
 
 		tx.commit();
 		session.close();
+		return true;
+		} 
 
 		return false;
 	}
@@ -43,9 +59,6 @@ public class DataDaoimpl implements DataDao {
 	public ConsumerGroup getEntityById(int id) throws Exception {
 		session = sessionFactory.openSession();
 		ConsumerGroup consumergroup = (ConsumerGroup) session.load(ConsumerGroup.class, new Integer(id));
-		tx = session.getTransaction();
-		session.beginTransaction();
-		tx.commit();
 		return consumergroup;
 	}
 
@@ -53,9 +66,7 @@ public class DataDaoimpl implements DataDao {
 	@Override
 	public List<ConsumerGroup> getEntityList() throws Exception {
 		session = sessionFactory.openSession();
-		tx = session.beginTransaction();
 		List<ConsumerGroup> consumergroupList = session.createCriteria(ConsumerGroup.class).list();
-		tx.commit();
 		session.close();
 		return consumergroupList;
 	}

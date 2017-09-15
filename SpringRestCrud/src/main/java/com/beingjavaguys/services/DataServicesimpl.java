@@ -13,10 +13,10 @@ import com.beingjavaguys.model.ConsumerGroup;
 /* @Service  */
 public class DataServicesimpl implements DataServices {
 	@Autowired
-	DataDaoimpl dataDao = new DataDaoimpl();
+	DataDaoimpl dataDao;
 
 	@Override
-	public boolean addEntity(ConsumerGroup consumergroup) throws Exception {
+	public Integer addEntity(ConsumerGroup consumergroup) throws Exception {
 		//System.out.println(consumergroup.getFirstName());
 		return dataDao.addEntity(consumergroup);
 	}
@@ -36,5 +36,13 @@ public class DataServicesimpl implements DataServices {
 	public boolean deleteEntity(int id) throws Exception {
 		return dataDao.deleteEntity(id);
 	}
+
+	@Override
+	public boolean updateEntity(ConsumerGroup consumergroup) throws Exception {
+		return dataDao.updateEntity(consumergroup);
+	}
+	
+	
+	
 
 }
