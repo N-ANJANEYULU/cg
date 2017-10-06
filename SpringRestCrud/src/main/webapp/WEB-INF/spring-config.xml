@@ -8,23 +8,25 @@
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	
-	<context:component-scan base-package="com.beingjavaguys.controller" />
+<!-- 	<context:component-scan base-package="com.beingjavaguys.controller" /> -->
+	<context:component-scan base-package="com.acc.controller" />
 	<mvc:annotation-driven />
 
-	<bean id="dataSource"
+
+
+<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/cdb" />
+		<property name="url" value="jdbc:mysql://localhost:3306/imt" />
 		<property name="username" value="root" />
 		<property name="password" value="admin123" />
 	</bean>
-
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.beingjavaguys.model.ConsumerGroup</value>
+				<value>com.acc.model.UserRegister</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -34,19 +36,21 @@
 			</props>
 		</property>
 	</bean>
+
 <bean id="dataDao"
-		class="com.beingjavaguys.dao.DataDaoimpl">
+		class="com.acc.dao.DataDaoimpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+
+	
 
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-   
-    <bean id="restController" class="com.beingjavaguys.controller.RestController"></bean> 
-	<bean id="DataDao" class="com.beingjavaguys.dao.DataDaoimpl"></bean>
-	<bean id="dataServices" class="com.beingjavaguys.services.DataServicesimpl"></bean>
+    <bean id="restController" class="com.acc.controller.RestController"></bean> 
+	<bean id="dataServices" class="com.acc.services.DataServicesimpl"></bean>
 </beans>

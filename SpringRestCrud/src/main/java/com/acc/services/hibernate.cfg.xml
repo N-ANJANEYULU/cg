@@ -18,13 +18,12 @@
       jdbc:mysql://localhost/rshop
    </property>
    <property name="hibernate.connection.username">
-      consumergroup
+      UserRegister
    </property>
    <property name="hibernate.connection.password">
-      consumergroup
+      UserRegister
    </property>
 <!-- List of XML mapping files -->
-   <mapping resource="ConsumerGroup.hbm.xml"/>
    <mapping resource="UserRegister.hbm.xml"/>
 
 </session-factory>

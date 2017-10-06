@@ -42,7 +42,8 @@ http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
    
-    <bean id="consumerGroup" class="com.beingjavaguys.controller.ConsumerGroup"></bean>
+	<bean id="dataDao1" class="com.beingjavaguys.dao.DataDaoimpl"></bean>
+	<bean id="dataServices1" class="com.beingjavaguys.services.DataServicesimpl"></bean>
 	<bean id="dataDao" class="com.beingjavaguys.dao.DataDaoimpl"></bean>
 	<bean id="dataServices" class="com.beingjavaguys.services.DataServicesimpl"></bean>
 	
